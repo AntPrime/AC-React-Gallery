@@ -73,7 +73,7 @@ return (<>
       <div key={gallery.id} data-testid="galleryList">
         {selectedImageId === gallery.id ? (
           // If the image is selected, show the description instead
-          <div>
+          <div data-testid="galleryItem">
             <p 
               onClick={() => toggleDescription(gallery.id)} 
               // Can help provide a curser so that people know the img is clickable
@@ -84,7 +84,7 @@ return (<>
           </div>
         ) : (
           // If the image is not selected, show the image
-          <div data-testid="galleryItem">
+          <div data-testid="galleryItem" >
             <img
               src={gallery.url}
               alt={gallery.title}
@@ -94,11 +94,13 @@ return (<>
               style={{ cursor: 'pointer' }} 
             />
             <br />
-            {gallery.title}
+            <div data-testid="like">{gallery.title}
+            
             <br />
-            <button data-testid="like" onClick={() => updateLikes(gallery.id)}>Love it!</button>
+            <button onClick={() => updateLikes(gallery.id)}>Love it!</button>
             <br />
             {gallery.likes} people love this!
+            </div>
           </div>
         )}
       </div>
