@@ -32,7 +32,18 @@ function App() {
           <h1>React Gallery</h1>
         </header>
 
-        <p data-testid="galleryList"> What goes here?</p>
+              
+            
+                
+                     
+                     {galleryList.map((gallery) => (
+                      <div key={gallery.id}  data-testid="galleryList">
+                         {gallery.url} <br /> {gallery.title} ,<br /> {gallery.description} 
+                         </div>
+               
+                      ))}
+                    
+                
         
         <img src="images/goat_small.jpg"/>
         <img src="images/goat_stache.png"/>
