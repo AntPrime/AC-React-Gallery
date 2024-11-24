@@ -6,7 +6,7 @@ import axios from "axios";
 function App() {
 
   const [galleryList, setGalleryList] = useState([])
-  const [likeToChange,likesSetter] = useState('')
+  let [likeToChange,likesSetter] = useState(0)
 
   useEffect(()=>{
     fetchGallery();},[])
@@ -27,6 +27,27 @@ function App() {
   })
   }
 
+  const updateLikes = (event, itemId ) =>{
+    event.preventDefault()
+
+  const updatingLike = {
+    likes: likeToChange
+  }
+  axios({
+    method: 'PUT',
+    url: `/api/gallery/like/${itemId}`,
+    data: updatingLike
+})
+    .then((response) => {
+        fetchGallery();
+console.log("PUT", response)
+        likesSetter(likeToChange + 1)
+    })
+    .catch((error) => {
+        console.log('Error on add:', error);
+    });
+  }
+
     return (<>
       <div data-testid="app">
         <header>
@@ -38,7 +59,7 @@ function App() {
             {galleryList.map((gallery) => (
                       <div key={gallery.id}  data-testid="galleryList">
                          <img data-testid="galleryItem" src={gallery.url} /> <br />{gallery.title} <br />
-                         <button>Love it!</button> <br />
+                         <button onClick={() => updateLikes(event, gallery.id)}>Love it!</button> <br />
                          {gallery.likes} people love this! 
                          </div>
                
