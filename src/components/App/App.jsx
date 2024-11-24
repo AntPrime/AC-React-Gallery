@@ -7,6 +7,7 @@ function App() {
 
   const [galleryList, setGalleryList] = useState([])
   let [likeToChange,likesSetter] = useState(0)
+  const [selectedImageId, setSelectedImageId] = useState(null);
 
   useEffect(()=>{
     fetchGallery();},[])
@@ -27,15 +28,14 @@ function App() {
   })
   }
 
-  const updateLikes = (event, itemId ) =>{
-    event.preventDefault()
+  const updateLikes = (id ) =>{
 
   const updatingLike = {
     likes: likeToChange
   }
   axios({
     method: 'PUT',
-    url: `/api/gallery/like/${itemId}`,
+    url: `/api/gallery/like/${id}`,
     data: updatingLike
 })
     .then((response) => {
@@ -48,30 +48,70 @@ console.log("PUT", response)
     });
   }
 
-    return (<>
-      <div data-testid="app">
-        <header>
-          <h1>React Gallery</h1>
-        </header>
+  const toggleDescription = (id) => {
+    // got some help from Phind to useState to change the IMG/Description
+    
+      setSelectedImageId(null);
+    }; 
+
+    const toggleImage = (id) =>{
+     setSelectedImageId(id)
+  };
+
+  // landed on one big Ternary Operator to put it inside of the Return
+// got some help from Find to figure out how to correctly setup the div's in the HTML 
+return (<>
+       <div data-testid="app">
+         <header>
+           <h1>React Gallery</h1>
+         </header>
 
               
              
-            {galleryList.map((gallery) => (
-                      <div key={gallery.id}  data-testid="galleryList">
-                         <img data-testid="galleryItem" src={gallery.url} /> <br />{gallery.title} <br />
-                         <button onClick={() => updateLikes(event, gallery.id)}>Love it!</button> <br />
-                         {gallery.likes} people love this! 
-                         </div>
-               
-                      ))}
+   <div>
+    {galleryList.map((gallery) => (
+      <div key={gallery.id} data-testid="galleryList">
+        {selectedImageId === gallery.id ? (
+          // If the image is selected, show the description instead
+          <div>
+            <p 
+              onClick={() => toggleDescription(gallery.id)} 
+              // Can help provide a curser so that people know the img is clickable
+              style={{ cursor: 'pointer' }}
+            >
+              {gallery.description}
+            </p>
+          </div>
+        ) : (
+          // If the image is not selected, show the image
+          <div data-testid="galleryItem">
+            <img
+              src={gallery.url}
+              alt={gallery.title}
+              onClick={() => toggleImage(gallery.id)}
+              data-testid="toggle"
+          // Add pointer cursor to indicate it's clickable
+              style={{ cursor: 'pointer' }} 
+            />
+            <br />
+            {gallery.title}
+            <br />
+            <button data-testid="like" onClick={() => updateLikes(gallery.id)}>Love it!</button>
+            <br />
+            {gallery.likes} people love this!
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
                     
                 
-        -- Added an onclick to the img bellow and can see that it works to fetch when clicked
-        <img src="images/goat_small.jpg"/>
-        <img onClick={fetchGallery} src="images/goat_stache.png"/>
+         {/* -- Added an onclick to the img bellow and can see that it works to fetch when clicked */}
+         {/* <img src="images/goat_small.jpg"/>
+         <img onClick={fetchGallery} src="images/goat_stache.png"/> */}
        
-      </div>
-      </> );
+       </div>
+       </> );
 }
 
 export default App;
