@@ -6,6 +6,7 @@ import axios from "axios";
 function App() {
 
   const [galleryList, setGalleryList] = useState([])
+  const [likeToChange,likesSetter] = useState('')
 
   useEffect(()=>{
     fetchGallery();},[])
@@ -36,15 +37,18 @@ function App() {
              
             {galleryList.map((gallery) => (
                       <div key={gallery.id}  data-testid="galleryList">
-                         <img src={gallery.url} /> <br /> {gallery.title} ,<br /> {gallery.description} 
+                         <img data-testid="galleryItem" src={gallery.url} /> <br />{gallery.title} <br />
+                         <button>Love it!</button> <br />
+                         {gallery.likes} people love this! 
                          </div>
                
                       ))}
                     
                 
-        
+        -- Added an onclick to the img bellow and can see that it works to fetch when clicked
         <img src="images/goat_small.jpg"/>
-        <img src="images/goat_stache.png"/>
+        <img onClick={fetchGallery} src="images/goat_stache.png"/>
+       
       </div>
       </> );
 }
