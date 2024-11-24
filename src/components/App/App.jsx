@@ -33,12 +33,10 @@ function App() {
         </header>
 
               
-            
-                
-                     
-                     {galleryList.map((gallery) => (
+             
+            {galleryList.map((gallery) => (
                       <div key={gallery.id}  data-testid="galleryList">
-                         {gallery.url} <br /> {gallery.title} ,<br /> {gallery.description} 
+                         <img src={gallery.url} /> <br /> {gallery.title} ,<br /> {gallery.description} 
                          </div>
                
                       ))}
