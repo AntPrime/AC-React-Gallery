@@ -18,7 +18,7 @@ router.put('/like/:id', (req, res) => {
 
   console.log(likes)
   pool.query( queryText, values ).then( ( results )=>{
-    console.log('Update Successful:', results)
+    //console.log('Update Successful:', results)
       res.sendStatus( 200 ); // "OK"
   }).catch( ( err )=>{
       // handle any errors

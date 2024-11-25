@@ -28,19 +28,19 @@ function App() {
   })
   }
 
-  const updateLikes = (id ) =>{
+  const updateLikes = (id) =>{
 
-  const updatingLike = {
-    likes: likeToChange
-  }
+ 
   axios({
     method: 'PUT',
     url: `/api/gallery/like/${id}`,
-    data: updatingLike
+    data: {
+      likes: likeToChange
+    }
 })
     .then((response) => {
         fetchGallery();
-console.log("PUT", response)
+console.log("PUT", response.data)
         likesSetter(likeToChange + 1)
     })
     .catch((error) => {
@@ -68,9 +68,9 @@ return (<>
 
               
              
-   <div>
+   <div data-testid="galleryList">
     {galleryList.map((gallery) => (
-      <div key={gallery.id} data-testid="galleryList">
+      <div key={gallery.id}>
         {selectedImageId === gallery.id ? (
           // If the image is selected, show the description instead
           <div data-testid="galleryItem">
@@ -78,6 +78,7 @@ return (<>
               onClick={() => toggleDescription(gallery.id)} 
               // Can help provide a curser so that people know the img is clickable
               style={{ cursor: 'pointer' }}
+              data-testid="toggle"
             >
               {gallery.description}
             </p>
@@ -89,17 +90,17 @@ return (<>
               src={gallery.url}
               alt={gallery.title}
               onClick={() => toggleImage(gallery.id)}
-              data-testid="toggle"
           // Add pointer cursor to indicate it's clickable
               style={{ cursor: 'pointer' }} 
             />
             <br />
-            <div data-testid="like">{gallery.title}
+            <div>{gallery.title}
             
             <br />
+            
             <button onClick={() => updateLikes(gallery.id)}>Love it!</button>
             <br />
-            {gallery.likes} people love this!
+            <div data-testid="like"> {gallery.likes} people love this!</div>
             </div>
           </div>
         )}
