@@ -6,7 +6,7 @@ import axios from "axios";
 function App() {
 
   const [galleryList, setGalleryList] = useState([])
-  let [likeToChange,likesSetter] = useState(0)
+  const [likeToChange,likesSetter] = useState(0)
   const [selectedImageId, setSelectedImageId] = useState(null);
 
   useEffect(()=>{
@@ -30,7 +30,6 @@ function App() {
 
   const updateLikes = (id) =>{
 
- 
   axios({
     method: 'PUT',
     url: `/api/gallery/like/${id}`,
@@ -93,13 +92,11 @@ return (<>
           // Add pointer cursor to indicate it's clickable
               style={{ cursor: 'pointer' }} 
             />
-            <br />
+            <br/>
             <div>{gallery.title}
-            
-            <br />
-            
+            <br/>
             <button onClick={() => updateLikes(gallery.id)}>Love it!</button>
-            <br />
+            <br/>
             <div data-testid="like"> {gallery.likes} people love this!</div>
             </div>
           </div>
