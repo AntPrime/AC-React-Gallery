@@ -3,7 +3,7 @@ import axios from "axios";
 
 function GalleryItem({ gallery, fetchGallery }) {
   // State for tracking selected image and likes
-  const [selectedImageId, setSelectedImageId] = useState(null);
+  const [selectedImageId, setSelectedImageId] = useState('');
   const [likes, setLikes] = useState(gallery.likes);
 
   // Update likes when the "Love it!" button is clicked
@@ -24,12 +24,9 @@ function GalleryItem({ gallery, fetchGallery }) {
   };
 
   // Toggle between showing the image and the description
-  const toggleDescription = () => {
-    setSelectedImageId(null);
-  };
-
-  const toggleImage = (id) => {
-    setSelectedImageId(id);
+  const toggleDescription = (id) => {
+    // got some help from Phind to see why my test weren't passing
+    setSelectedImageId((prev) => (prev === id ? null : id));
   };
 
   return (
@@ -45,19 +42,21 @@ function GalleryItem({ gallery, fetchGallery }) {
         </p>
       ) : (
         // Show the image if it's not selected
-        <div>
+        <div data-testid="galleryItem">
           <img
             src={gallery.url}
             alt={gallery.title}
             onClick={() => toggleImage(gallery.id)}
             style={{ cursor: "pointer" }}
+            data-testid="toggle"
           />
           <br />
           <div>{gallery.title}</div>
           <br />
-          <button onClick={() => updateLikes(gallery.id)}>Love it!</button>
+          <div data-testid="like">
+          <button data-testid="like" onClick={() => updateLikes(gallery.id)}>Love it!</button>
           <br />
-          <div data-testid="like">{likes} people love this!</div>
+          {likes} people love this!</div>
         </div>
       )}
     </div>

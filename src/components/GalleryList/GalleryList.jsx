@@ -6,9 +6,7 @@ import GalleryItem from "../GalleryItem/GalleryItem";
 function listGallery() {
 
     const [galleryList, setGalleryList] = useState([])
-    let [likeToChange,likesSetter] = useState(0)
-    const [selectedImageId, setSelectedImageId] = useState(null);
-
+    
     useEffect(()=>{
       fetchGallery();},[])
   
@@ -30,8 +28,8 @@ function listGallery() {
   
   return
   <div data-testid="galleryList">
-  {galleryList.map((gallery, index) => (
-    <GalleryItem key={index} gallery={gallery} fetchGallery={fetchGallery}/>
+  {galleryList.map((item) => (
+    <GalleryItem key={item.id} gallery={item} fetchGallery={fetchGallery}/>
   ))}
   </div>
 };

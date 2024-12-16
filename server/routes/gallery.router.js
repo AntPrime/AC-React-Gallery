@@ -35,7 +35,7 @@ router.get('/', (req, res) => {
 `
 pool.query(sqlText)
   .then((Result) => {
-      console.log(`Result.rows is:`, Result.rows);
+      //console.log(`Result.rows is:`, Result.rows);
       res.send(Result.rows);
   })
   .catch((error) => {
