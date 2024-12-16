@@ -1,9 +1,67 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
-function itemGallery() {
+function GalleryItem({ gallery, fetchGallery }) {
+  // State for tracking selected image and likes
+  const [selectedImageId, setSelectedImageId] = useState(null);
+  const [likes, setLikes] = useState(gallery.likes);
 
-    return 
-    
+  // Update likes when the "Love it!" button is clicked
+  const updateLikes = (id) => {
+    axios({
+      method: "PUT",
+      url: `/api/gallery/like/${id}`,
+      data: { likes: likes + 1 },
+    })
+      .then((response) => {
+        console.log("PUT response:", response.data);
+        setLikes(likes + 1); // Update local state
+        fetchGallery(); // Refresh the gallery
+      })
+      .catch((error) => {
+        console.log("Error updating likes:", error);
+      });
+  };
+
+  // Toggle between showing the image and the description
+  const toggleDescription = () => {
+    setSelectedImageId(null);
+  };
+
+  const toggleImage = (id) => {
+    setSelectedImageId(id);
+  };
+
+  return (
+    <div data-testid="galleryItem">
+      {selectedImageId === gallery.id ? (
+        // Show description if the image is selected
+        <p
+          onClick={toggleDescription}
+          style={{ cursor: "pointer" }}
+          data-testid="toggle"
+        >
+          {gallery.description}
+        </p>
+      ) : (
+        // Show the image if it's not selected
+        <div>
+          <img
+            src={gallery.url}
+            alt={gallery.title}
+            onClick={() => toggleImage(gallery.id)}
+            style={{ cursor: "pointer" }}
+          />
+          <br />
+          <div>{gallery.title}</div>
+          <br />
+          <button onClick={() => updateLikes(gallery.id)}>Love it!</button>
+          <br />
+          <div data-testid="like">{likes} people love this!</div>
+        </div>
+      )}
+    </div>
+  );
 }
+
+export default GalleryItem;
