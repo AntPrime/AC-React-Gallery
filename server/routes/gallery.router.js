@@ -31,7 +31,7 @@ router.put('/like/:id', (req, res) => {
 router.get('/', (req, res) => {
   // code here
   const sqlText = `
-  SELECT * FROM "gallery";
+  SELECT * FROM "gallery" ORDER by "likes";
 `
 pool.query(sqlText)
   .then((Result) => {

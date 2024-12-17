@@ -46,12 +46,12 @@ function GalleryItem({ gallery, fetchGallery }) {
           <img
             src={gallery.url}
             alt={gallery.title}
-            onClick={() => toggleImage(gallery.id)}
+            onClick={toggleDescription}
             style={{ cursor: "pointer" }}
             data-testid="toggle"
           />
           <br />
-          <div>{gallery.title}</div>
+          {gallery.title}
           <br />
           <div data-testid="like">
           <button data-testid="like" onClick={() => updateLikes(gallery.id)}>Love it!</button>

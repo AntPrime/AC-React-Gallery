@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import GalleryItem from "../GalleryItem/GalleryItem";
 
-function listGallery() {
+function GalleryList() {
 
     const [galleryList, setGalleryList] = useState([])
     
@@ -26,10 +26,13 @@ function listGallery() {
     })
     }
   
-  return
+  return (
   <div data-testid="galleryList">
   {galleryList.map((item) => (
     <GalleryItem key={item.id} gallery={item} fetchGallery={fetchGallery}/>
   ))}
   </div>
+  )
 };
+
+export default GalleryList;
