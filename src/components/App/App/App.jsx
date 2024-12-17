@@ -66,8 +66,9 @@ return (<>
            <h1>React Gallery</h1>
          </header>
 
+        <div data-testid="galleryItem">
         <GalleryList/>
-          
+        </div>
         </>);
 }
 
