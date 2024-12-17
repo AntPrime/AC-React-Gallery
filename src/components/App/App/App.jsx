@@ -1,10 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import GalleryList from "../../GalleryList/GalleryList";
+import ListGallery from "../../GalleryList/GalleryList";
 
 
-function App() {
+function App({fetchGallery}) {
+
+    //  useEffect(()=>{
+    //      fetchGallery();},[])
 
   // const [galleryList, setGalleryList] = useState([])
   // const [likeToChange,likesSetter] = useState(0)
@@ -67,7 +70,7 @@ return (<>
          </header>
 
         <div data-testid="galleryItem">
-        <GalleryList/>
+        <ListGallery />
         </div>
         </>);
 }

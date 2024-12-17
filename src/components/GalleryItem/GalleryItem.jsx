@@ -30,35 +30,40 @@ function GalleryItem({ gallery, fetchGallery }) {
   };
 
   return (
-    <div >
+    <div data-testid="galleryItem">
       {selectedImageId === gallery.id ? (
-        // Show description if the image is selected
+        // Show the description if selected
         <p
           onClick={() => toggleDescription(gallery.id)}
           style={{ cursor: "pointer" }}
-          data-testid="galleryItem"
+          data-testid="toggle"
         >
           {gallery.description}
         </p>
       ) : (
-        // Show the image if it's not selected
-        <div >
-          <img
-            src={gallery.url}
-            alt={gallery.title}
-            onClick={() => toggleDescription(gallery.id)}
-            style={{ cursor: "pointer" }}
-            data-testid="toggle"
-          />
-          <br />
-          {gallery.title}
-          <br />
-          <div>
-          <button data-testid="like" onClick={() => updateLikes(gallery.id)}>Love it!</button>
-          <br />
-          {likes} people love this!</div>
-        </div>
+        // Show the image if not selected
+        <img
+          src={gallery.url}
+          alt={gallery.title}
+          onClick={() => toggleDescription(gallery.id)}
+          style={{ cursor: "pointer" }}
+          data-testid="toggle"
+        />
       )}
+      {/* Additional content such as title, button, and likes */}
+      <br />
+      {gallery.title}
+      <br />
+      <div>
+        <button
+          data-testid="like"
+          onClick={() => updateLikes(gallery.id)}
+        >
+          Love it!
+        </button>
+        <br />
+        {likes} people love this!
+      </div>
     </div>
   );
 }

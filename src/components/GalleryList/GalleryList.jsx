@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import GalleryItem from "../GalleryItem/GalleryItem";
 
-function GalleryList() {
+function ListGallery() {
 
     const [galleryList, setGalleryList] = useState([])
     
-    useEffect(()=>{
-      fetchGallery();},[])
+     useEffect(()=>{
+       fetchGallery();},[])
   
     const fetchGallery = () =>{
       console.log("fetching..")
@@ -35,4 +35,4 @@ function GalleryList() {
   )
 };
 
-export default GalleryList;
+export default ListGallery;
