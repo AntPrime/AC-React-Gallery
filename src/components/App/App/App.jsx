@@ -4,7 +4,7 @@ import axios from "axios";
 import ListGallery from "../../GalleryList/GalleryList";
 
 
-function App({fetchGallery}) {
+function App() {
 
 return (<>
         

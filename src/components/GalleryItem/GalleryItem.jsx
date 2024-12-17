@@ -30,13 +30,14 @@ function GalleryItem({ gallery, fetchGallery }) {
   };
 
   return (
-    <div data-testid="galleryItem">
+    <div className="galleryList" data-testid="galleryItem">
       {selectedImageId === gallery.id ? (
         // Show the description if selected
-        <p
+        <p 
           onClick={() => toggleDescription(gallery.id)}
           style={{ cursor: "pointer" }}
           data-testid="toggle"
+          className="innerText"
         >
           {gallery.description}
         </p>
@@ -48,13 +49,14 @@ function GalleryItem({ gallery, fetchGallery }) {
           onClick={() => toggleDescription(gallery.id)}
           style={{ cursor: "pointer" }}
           data-testid="toggle"
+          className="innerImg"
         />
       )}
       {/* Additional content such as title, button, and likes */}
       <br />
       {gallery.title}
       <br />
-      <div>
+      <div className="innerLike">
         <button
           data-testid="like"
           onClick={() => updateLikes(gallery.id)}
