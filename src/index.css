@@ -2,14 +2,44 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: orange;
 }
 
-.galleryList{
-  background-color: lightgray; 
-  padding: 1rem; 
-  box-sizing: border-box; 
-  border: 2px solid gray;
+h1{
+  font-size: 40px;
+  text-decoration: underline;
+  text-align: center;
+  font-family: fantasy;
+}
+.container {
+  display: flex; 
+  justify-content: center; 
+  gap: 1rem; 
+}
+
+.galleryList {
+  width: 300px;
+  height: 275px;
   padding: 1rem;
-  margin: auto;
+  box-sizing: border-box;
+  background-color: lightyellow;
+  border: 2px solid darkorange;
+  border-radius: 8px;
+  text-align: center; /* Center text and inline elements */
 }
 
+.galleryList p {
+  border: 1px solid black;
+  max-width:fit-content;
+  font-size: larger;
+  position: relative;
+  text-align: center;
+}
+
+.galleryList img {
+  max-width: 100%; /* Ensure image doesn't overflow */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove extra spacing for inline images */
+  margin: 0 auto; /* Center the image horizontally */
+  border: 1px solid black;
+}

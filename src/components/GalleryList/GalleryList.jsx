@@ -6,7 +6,7 @@ import GalleryItem from "../GalleryItem/GalleryItem";
 function ListGallery() {
 
     const [galleryList, setGalleryList] = useState([])
-    
+    // getting DB to post to the DOM 
      useEffect(()=>{
        fetchGallery();},[])
   
@@ -27,7 +27,7 @@ function ListGallery() {
     }
   
   return (
-  <div data-testid="galleryList">
+  <div className="container" data-testid="galleryList">
   {galleryList.map((item) => (
     <GalleryItem key={item.id} gallery={item} fetchGallery={fetchGallery}/>
   ))}

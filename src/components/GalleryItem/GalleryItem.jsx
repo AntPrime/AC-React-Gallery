@@ -44,10 +44,10 @@ function GalleryItem({ gallery, fetchGallery }) {
       ) : (
         // Show the image if not selected
         <img
-          src={gallery.url}
+          src={gallery.url} width='175px'
           alt={gallery.title}
           onClick={() => toggleDescription(gallery.id)}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", alignContent: "center"}}
           data-testid="toggle"
           className="innerImg"
         />

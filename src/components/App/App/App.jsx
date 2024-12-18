@@ -9,7 +9,7 @@ function App() {
 return (<>
         
          <header data-testid="app">
-           <h1>React Gallery</h1>
+           <h1>Anthony's React Gallery</h1>
          </header>
 
         <ListGallery />
