@@ -25,7 +25,7 @@ h1{
   background-color: lightyellow;
   border: 2px solid darkorange;
   border-radius: 8px;
-  text-align: center; /* Center text and inline elements */
+  text-align: center; /* center text and inline elements */
 }
 
 .galleryList p {
@@ -37,9 +37,9 @@ h1{
 }
 
 .galleryList img {
-  max-width: 100%; /* Ensure image doesn't overflow */
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Remove extra spacing for inline images */
-  margin: 0 auto; /* Center the image horizontally */
+  max-width: 100%; /* ensure image doesn't overflow */
+  height: auto; /* maintain aspect ratio */
+  display: block; /* remove extra spacing for inline images */
+  margin: 0 auto; /* center the image horizontally */
   border: 1px solid black;
 }

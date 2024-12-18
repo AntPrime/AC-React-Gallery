@@ -4,7 +4,7 @@ import axios from "axios";
 import GalleryItem from "../GalleryItem/GalleryItem";
 
 function ListGallery() {
-
+// setting statte to a an empty array
     const [galleryList, setGalleryList] = useState([])
     // getting DB to post to the DOM 
      useEffect(()=>{
@@ -19,6 +19,7 @@ function ListGallery() {
     })
     .then((response) => {
         console.log("Response: ", response.data)
+        // adding the DB contents into the empty array above
         setGalleryList(response.data)
     })
     .catch((err) => {
