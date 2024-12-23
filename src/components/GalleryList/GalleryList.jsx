@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import GalleryItem from "../GalleryItem/GalleryItem";
+import AddGalleryItem from "../AddGalleryItem/AddGalleryItem";
 
 function ListGallery() {
 // setting statte to a an empty array
@@ -29,6 +30,10 @@ function ListGallery() {
   
   return (
   <div className="container" data-testid="galleryList">
+
+    <AddGalleryItem fetchGallery={fetchGallery}/>
+    
+
   {galleryList.map((item) => (
     <GalleryItem key={item.id} gallery={item} fetchGallery={fetchGallery}/>
   ))}
