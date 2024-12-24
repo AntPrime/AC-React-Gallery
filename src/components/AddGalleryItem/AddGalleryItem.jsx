@@ -22,14 +22,16 @@ function AddGalleryItem({fetchGallery}) {
 
    axios({
     method: "POST",
-    url: "/api/todo",
+    url: "/api/gallery",
     data: addingItem
   })
     .then((response) => {
       console.log("POST worked! Woot woot")
       //console.log(todoText)
      fetchGallery();
-      setTitle("");
+      setTitle('');
+      setDescription('');
+      setURl('');
     })
     .catch((error) => {
       console.error("POST /api/todo is broken",error)
@@ -40,10 +42,10 @@ function AddGalleryItem({fetchGallery}) {
 return (
         <div>
     
-         <input type="text" placeholder="URL" onChange={(e)=>setURl(e.target.value)} />
-         <input type="text" placeholder="Title" onChange={(e)=>setTitle(e.target.value)} />
-         <input type="text" placeholder="Description" onChange={(e)=>setDescription(e.target.value)} />
-         <button onClick={addGalleryItem}> Add Post</button>
+         <input value={urlText} type="text" placeholder="Image URL" onChange={(e)=>setURl(e.target.value)} />
+         <input value={titleText} type="text" placeholder="Title" onChange={(e)=>setTitle(e.target.value)} />
+         <input value={descriptionText} type="text" placeholder="Description" onChange={(e)=>setDescription(e.target.value)} />
+         <button className="InputButton" onClick={addGalleryItem}> Add Post</button>
 
        
          </div>

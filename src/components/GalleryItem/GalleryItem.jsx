@@ -29,8 +29,30 @@ function GalleryItem({ gallery, fetchGallery }) {
     setSelectedImageId((prev) => (prev === id ? null : id));
   };
 
+  function deleteGalleryItem ( id ) {
+    
+    console.log('Deleting GalleryItem with Id:', id)
+    
+      axios({
+        method: 'DELETE',
+        url: `/api/gallery/${id}`
+      })
+        .then(() => {
+          console.log('Deleted Todo successfully!');
+          fetchGallery();
+        })
+        .catch((error) => {
+          console.log('Error deleting todo', error);
+        });
+      }
+
   return (
     <div className="galleryList" data-testid="galleryItem">
+       <button className="top-right-button"
+       onClick={() => deleteGalleryItem(gallery.id)}>
+        ❌
+       </button>
+       <div className="galleryContent">
       {selectedImageId === gallery.id ? (
         // Show the description if selected
         <p 
@@ -65,6 +87,7 @@ function GalleryItem({ gallery, fetchGallery }) {
         </button>
         <br />
         {likes} people love this!
+        </div>
       </div>
     </div>
   );

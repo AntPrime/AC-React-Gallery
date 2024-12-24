@@ -3,7 +3,6 @@ const router = express.Router();
 const pool = require('../modules/pool')
 
 // PUT /gallery/like/:id
-
 router.put('/like/:id', (req, res) => {
   // !CODE HERE
   console.log( '/ in Router PUT' );
@@ -26,7 +25,6 @@ router.put('/like/:id', (req, res) => {
       res.sendStatus( 400 );
   })
 });
-
 // GET /gallery
 router.get('/', (req, res) => {
   // code here
@@ -43,5 +41,39 @@ pool.query(sqlText)
       res.sendStatus(500);
   })
 });
+// POST ROUTE
+router.post( '/', ( req, res )=>{
+  console.log( 'in /todo POST:', req.body );
+      // assemble query
+      const queryText = `INSERT into "gallery" ( "url", "title", "description" ) VALUES ( $1, $2, $3 );`;
+      const values = [ req.body.url, req.body.title, req.body.description ];
+      // run pool.query
+      pool.query( queryText, values ).then( ( results )=>{
+          // return results.rows
+          res.sendStatus( 200 ); // "CREATED"
+      }).catch( ( err )=>{
+          // handle any errors
+          console.log( err );
+          res.sendStatus( 500 );
+      })
+})
+// DELETE Route
+router.delete( '/:id', ( req, res )=>{
+    
+  const id = req.params.id;
+  console.log( 'Deleting to do with id:', id );
+  const queryText = `DELETE FROM "gallery" WHERE id=$1;`;
+
+      // run pool.query
+  pool.query( queryText, [id] )
+      .then( ( results )=>{
+      res.sendStatus( 200 );
+  }).catch( ( err )=>{
+          // handle any errors
+          console.log( err );
+          res.sendStatus( 500 );
+      })
+})
+
 
 module.exports = router;
