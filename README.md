@@ -2,7 +2,7 @@
 
 # Anthony's React Gallery
 
-This project is a simple gallery application that allows users to view images, toggle descriptions, and like items.
+This is a full-stack gallery application that allows users to view images, toggle descriptions, and like items. I included the capability to post new images with there title and description along with the ability to delete items from the database.
 
 ## Features
 
