@@ -29,14 +29,15 @@ function ListGallery() {
     }
   
   return (
-  <div className="container" data-testid="galleryList">
-
+  <div data-testid="galleryList">
+<div className="main-content">
     <AddGalleryItem fetchGallery={fetchGallery}/>
-    
-
+    </div>
+<div className="container">
   {galleryList.map((item) => (
     <GalleryItem key={item.id} gallery={item} fetchGallery={fetchGallery}/>
   ))}
+  </div>
   </div>
   )
 };

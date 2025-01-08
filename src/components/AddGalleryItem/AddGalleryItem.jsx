@@ -47,7 +47,6 @@ return (
          <input value={descriptionText} type="text" placeholder="Description" onChange={(e)=>setDescription(e.target.value)} />
          <button className="InputButton" onClick={addGalleryItem}> Add Post</button>
 
-       
          </div>
          );
 }

@@ -5,12 +5,13 @@ body {
   background-color: orange;
 }
 
-h1{
+h1 {
   font-size: 40px;
   text-decoration: underline;
   text-align: center;
   font-family: fantasy;
 }
+
 input {
   padding: 10px 15px;
   border: 1px solid #ddd;
@@ -20,7 +21,7 @@ input {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input:focus{
+input:focus {
   border-color: #4CAF50;
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
@@ -35,57 +36,71 @@ input:focus{
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .container {
-  display: flex; 
-  justify-content: center; 
-  gap: 1rem; 
+  display: grid; /* Use grid for layout */
+  grid-template-columns: repeat(4, 1fr); /* Create 4 equal columns */
+  gap: 1rem;
+  padding: 1rem; /* Add some padding around the grid */
 }
 
 .galleryList {
-  position: relative; /* Establish positioning context for absolute elements like the button */
-  width: 300px;
-  height: auto; /* Allow height to adjust based on content */
+  position: relative;
+  /* width: 300px; Remove fixed width */
+  height: auto;
   padding: 1rem;
   box-sizing: border-box;
   background-color: lightyellow;
   border: 2px solid darkorange;
   border-radius: 8px;
   text-align: center;
+  /* Added to prevent content from overflowing */
+  overflow: hidden;
+
 }
 
 .top-right-button {
-  position: absolute; /* Position relative to the .galleryList */
+  position: absolute;
   top: 10px;
   right: 10px;
-  padding: 3px 7px; /* Compact button size */
+  padding: 3px 7px;
   font-size: 12px;
   border: none;
-  background-color: #ff4d4d; /* Red for delete */
+  background-color: #ff4d4d;
   color: white;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .top-right-button:hover {
-  background-color: #d93636; /* Darker red on hover */
+  background-color: #d93636;
 }
 
 .galleryContent {
-  margin-top: 40px; /* Push content below the button */
+  margin-top: 40px;
 }
 
 .galleryList img {
-  max-width: 100%; /* Ensure image fits within container */
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Remove extra inline spacing */
-  margin: 10px auto; /* Center the image horizontally and add some spacing */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px auto;
 }
 
 .galleryList p {
   border: 1px dotted black;
-  max-width: fit-content;
+  /* max-width: fit-content; Removing this to allow text to wrap */
   font-size: larger;
   position: relative;
-  margin: 10px auto; /* Center and add spacing */
+  margin: 10px auto;
   text-align: center;
+  word-wrap: break-word; /* Ensure long words wrap */
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center horizontally */
+  width: 80%;
+  margin: 20px auto;
 }
